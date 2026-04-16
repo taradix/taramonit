@@ -52,27 +52,13 @@ npm run preview
 
 ## Docker
 
-The frontend is containerized and included in the main docker-compose.yml:
+The frontend is containerized and included in the main compose.yml:
 
 ```bash
 # Build and run
-docker-compose up -d frontend
+docker compose up -d frontend
 
 # The frontend will be available at http://localhost (via nginx)
-```
-
-## Architecture
-
-```
-src/
-├── components/
-│   ├── ServiceCard.tsx      # Individual service status card
-│   ├── StatusBadge.tsx      # Status indicator badge
-│   └── StatusPage.tsx       # Main status page layout
-├── types.ts                 # TypeScript type definitions
-├── App.tsx                  # Root component with data fetching
-├── main.tsx                 # Application entry point
-└── index.css                # Tailwind CSS imports
 ```
 
 ## Customization
