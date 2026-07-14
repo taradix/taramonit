@@ -18,6 +18,10 @@
     {
       "matchPackageNames": ["typescript", "typescript-eslint"],
       "groupName": "typescript"
+    },
+    {
+      "matchPackageNames": ["eslint", "@eslint/js"],
+      "groupName": "eslint"
     }
   ]
 }
