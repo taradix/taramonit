@@ -31,6 +31,9 @@ function App() {
   }, [t])
 
   useEffect(() => {
+    // fetchStatus is async; its setState calls run after `await fetch`, not
+    // synchronously, so the cascading-render concern doesn't apply here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchStatus()
     // Refresh every 30 seconds
     const interval = setInterval(fetchStatus, 30000)
