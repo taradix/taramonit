@@ -63,7 +63,7 @@ services:
       retries: 3
 
   blackbox-exporter:
-    image: prom/blackbox-exporter:v0.28.0
+    image: prom/blackbox-exporter:v0.29.0
     volumes:
       - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
     networks:
