@@ -133,7 +133,7 @@ services:
     restart: always
 
   loki:
-    image: grafana/loki:3.7.8
+    image: grafana/loki:3.7.9
     networks:
       default:
         aliases:
