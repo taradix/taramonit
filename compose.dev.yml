@@ -7,4 +7,4 @@ services:
       - ./backend/taramonit:/app/taramonit
       - ./backend/alembic:/app/alembic
     command: >
-      sh -c "alembic upgrade head && uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.dev.yaml --reload"
+      sh -c "alembic upgrade head && exec uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.dev.yaml --reload"
