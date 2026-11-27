@@ -1,14 +1,11 @@
 """Service fixtures."""
 
-import subprocess
 import sys
 from functools import partial
 
 import pytest
 from httpx import Client
 from pytest_xdocker.compose import ComposeServer, find_compose_files
-
-EXTERNAL_NETWORKS = ["taramail_default", "taramux_default", "tarawiki_default"]
 
 
 @pytest.fixture(scope="session")
@@ -44,16 +41,7 @@ def env_file(env_vars, request):
 
 
 @pytest.fixture(scope="session")
-def external_networks():
-    """Create the external networks from the sibling projects, if missing."""
-    for network in EXTERNAL_NETWORKS:
-        exists = subprocess.run(["docker", "network", "inspect", network], capture_output=True)  # noqa: S603, S607
-        if exists.returncode:
-            subprocess.run(["docker", "network", "create", network], check=True, capture_output=True)  # noqa: S603, S607
-
-
-@pytest.fixture(scope="session")
-def compose_server(project, env_file, process, request, external_networks):
+def compose_server(project, env_file, process, request):
     return partial(
         ComposeServer,
         project=project,

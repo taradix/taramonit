@@ -7,3 +7,17 @@ services:
       - ./backend/taramonit:/app/taramonit
     command: >
       sh -c "exec uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.dev.yaml --reload"
+
+# Isolate dev and tests from a real taramonit deployment and its sibling networks.
+networks:
+  default:
+    driver_opts: !reset {}
+  taramail:
+    external: false
+    name: !reset null
+  taramux:
+    external: false
+    name: !reset null
+  tarawiki:
+    external: false
+    name: !reset null
