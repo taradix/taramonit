@@ -1,4 +1,4 @@
-name: taramonit
+name: taramonit-test
 include:
   - path: ./taracert/compose.dev.yml
 services:
