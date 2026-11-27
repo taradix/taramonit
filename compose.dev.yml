@@ -1,10 +1,23 @@
-name: taramonit
+name: taramonit-test
 include:
   - path: ./taracert/compose.dev.yml
 services:
   api:
     volumes:
       - ./backend/taramonit:/app/taramonit
-      - ./backend/alembic:/app/alembic
     command: >
-      sh -c "alembic upgrade head && exec uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.dev.yaml --reload"
+      sh -c "exec uvicorn --host=0.0.0.0 --port=80 taramonit.api:app --log-config=/app/log-config.dev.yaml --reload"
+
+# Isolate dev and tests from a real taramonit deployment and its sibling networks.
+networks:
+  default:
+    driver_opts: !reset {}
+  taramail:
+    external: false
+    name: !reset null
+  taramux:
+    external: false
+    name: !reset null
+  tarawiki:
+    external: false
+    name: !reset null
